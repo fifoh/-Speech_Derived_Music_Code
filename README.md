@@ -1,9 +1,8 @@
 **Speech-Derived Music: Computational and Electromechanical Methods in DIY Sound-Art**  
 *Code Appendix*  
 
-This repository contains the code accompanying the thesis:  
-*"Speech-Derived Music: Computational and Electromechanical Methods in DIY Sound-Art"*  
-Author: Fintan O'Hare, Year: 2026
+This repository contains the code accompanying the thesis  
+*"Speech-Derived Music: Computational and Electromechanical Methods in DIY Sound-Art"*.
 
 ---
 
