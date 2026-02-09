@@ -1,5 +1,5 @@
-# Speech-Derived Music: Computational and Electromechanical Methods in DIY Sound-Art  
-## Code Appendix
+**Speech-Derived Music: Computational and Electromechanical Methods in DIY Sound-Art**  
+*Code Appendix*  
 
 This repository contains the code accompanying the thesis:  
 *"Speech-Derived Music: Computational and Electromechanical Methods in DIY Sound-Art"*  
@@ -7,7 +7,7 @@ Author: Fintan O'Hare, Year: 2026
 
 ---
 
-## Repository Overview
+**Repository Overview**
 
 - Chapter 4 – Motorcase I  
 - Chapter 4 – Motorcase II  
@@ -19,7 +19,7 @@ Author: Fintan O'Hare, Year: 2026
 
 ---
 
-## Notes
+**Notes**
 
 - Each folder corresponds to a chapter and contains scripts referenced in the thesis.  
 - File and folder naming mirrors the thesis appendix.
