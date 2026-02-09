@@ -1,0 +1,443 @@
+import board
+import busio
+from adafruit_servokit import ServoKit
+import time
+import asyncio
+
+import usb_midi
+import adafruit_midi
+
+from adafruit_midi.note_off import NoteOff
+from adafruit_midi.note_on import NoteOn
+
+from adafruit_simplemath import map_range
+
+# ----------------------------------------------------------------------------------------
+
+
+# 0 is MIDI channel 1
+midi = adafruit_midi.MIDI(midi_in=usb_midi.ports[0], in_channel=0, in_buf_size=30)
+
+i2c = busio.I2C(board.SCL, board.SDA)
+kit1 = ServoKit(channels=16, i2c=i2c, address=0x40)
+kit2 = ServoKit(channels=16, i2c=i2c, address=0x41)
+
+print("Midi input")
+
+# Convert channel numbers at the presentation layer to the ones musicians use
+print("Input channel:", midi.in_channel + 1)
+
+# start all normal servos in prep position: top set then bottom
+kit1.servo[3].angle = 0
+time.sleep(0.1)
+kit1.servo[4].angle = 0
+time.sleep(0.1)
+kit1.servo[5].angle = 0
+time.sleep(0.1)
+kit1.servo[6].angle = 0
+time.sleep(0.1)
+kit1.servo[7].angle = 0
+time.sleep(0.1)
+kit1.servo[8].angle = 0
+time.sleep(0.1)
+kit1.servo[9].angle = 0
+time.sleep(0.1)
+kit1.servo[10].angle = 0
+time.sleep(0.1)
+# servo 27 is continuous
+kit1.servo[12].angle = 0
+time.sleep(0.1)
+kit1.servo[13].angle = 0
+time.sleep(0.1)
+kit1.servo[14].angle = 0
+time.sleep(0.1)
+kit1.servo[15].angle = 0
+time.sleep(0.1)
+
+next_move_to_130_motor_19 = True
+next_move_to_130_motor_20 = True
+next_move_to_130_motor_21 = True
+next_move_to_130_motor_22 = True
+next_move_to_130_motor_23 = True
+next_move_to_130_motor_24 = True
+next_move_to_130_motor_25 = True
+next_move_to_130_motor_26 = True
+next_move_to_130_motor_28 = True
+next_move_to_130_motor_29 = True
+next_move_to_130_motor_30 = True
+next_move_to_130_motor_31 = True
+
+
+
+print("setup done")
+
+# motors have defined minimum values, although ideally they would all be the same
+
+# motor board 2: all continuous servos
+async def motor_0(msg):
+    if msg.note == 0:
+        if msg.velocity == 0:
+            kit2.continuous_servo[0].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[0].throttle = outputVel_continuous
+
+async def motor_1(msg):
+    if msg.note == 1:
+        if msg.velocity == 0:
+            kit2.continuous_servo[1].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.04, -0.5)
+            kit2.continuous_servo[1].throttle = outputVel_continuous
+
+async def motor_2(msg):
+    if msg.note == 2:
+        if msg.velocity == 0:
+            kit2.continuous_servo[2].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[2].throttle = outputVel_continuous
+
+async def motor_3(msg):
+    if msg.note == 3:
+        if msg.velocity == 0:
+            kit2.continuous_servo[3].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[3].throttle = outputVel_continuous
+
+async def motor_4(msg):
+    if msg.note == 4:
+        if msg.velocity == 0:
+            kit2.continuous_servo[4].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[4].throttle = outputVel_continuous
+
+async def motor_5(msg):
+    if msg.note == 5:
+        if msg.velocity == 0:
+            kit2.continuous_servo[5].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[5].throttle = outputVel_continuous
+
+async def motor_6(msg):
+    if msg.note == 6:
+        if msg.velocity == 0:
+            kit2.continuous_servo[6].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[6].throttle = outputVel_continuous
+
+async def motor_7(msg):
+    if msg.note == 7:
+        if msg.velocity == 0:
+            kit2.continuous_servo[7].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[7].throttle = outputVel_continuous
+
+async def motor_8(msg):
+    if msg.note == 8:
+        if msg.velocity == 0:
+            kit2.continuous_servo[8].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[8].throttle = outputVel_continuous
+
+async def motor_9(msg):
+    if msg.note == 9:
+        if msg.velocity == 0:
+            kit2.continuous_servo[9].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[9].throttle = outputVel_continuous
+
+async def motor_10(msg):
+    if msg.note == 10:
+        if msg.velocity == 0:
+            kit2.continuous_servo[10].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[10].throttle = outputVel_continuous
+
+async def motor_11(msg):
+    if msg.note == 11:
+        if msg.velocity == 0:
+            kit2.continuous_servo[11].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[11].throttle = outputVel_continuous
+
+async def motor_12(msg):
+    if msg.note == 12:
+        if msg.velocity == 0:
+            kit2.continuous_servo[12].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[12].throttle = outputVel_continuous
+
+async def motor_13(msg):
+    if msg.note == 13:
+        if msg.velocity == 0:
+            kit2.continuous_servo[13].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[13].throttle = outputVel_continuous
+
+async def motor_14(msg):
+    if msg.note == 14:
+        if msg.velocity == 0:
+            kit2.continuous_servo[14].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[14].throttle = outputVel_continuous
+
+async def motor_15(msg):
+    if msg.note == 15:
+        if msg.velocity == 0:
+            kit2.continuous_servo[15].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.05, -0.5)
+            kit2.continuous_servo[15].throttle = outputVel_continuous
+
+
+# motor board 1: mixture of continuous and normal servo motors (motor numbers start from 0 again)
+async def motor_16(msg):
+    if msg.note == 16:
+        if msg.velocity == 0:
+            kit1.continuous_servo[0].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.0, -0.5)
+            kit1.continuous_servo[0].throttle = outputVel_continuous
+
+async def motor_17(msg):
+    if msg.note == 17:
+        if msg.velocity == 0:
+            kit1.continuous_servo[1].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.0, -0.5)
+            kit1.continuous_servo[1].throttle = outputVel_continuous
+
+async def motor_18(msg):
+    if msg.note == 18:
+        if msg.velocity == 0:
+            kit1.continuous_servo[2].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.0, -0.5)
+            kit1.continuous_servo[2].throttle = outputVel_continuous
+
+
+async def motor_19(msg):
+    global next_move_to_130_motor_19  # Reference the global variable
+
+    if msg.note == 19 and msg.velocity != 0:
+        if next_move_to_130_motor_19:
+            kit1.servo[3].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[3].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_19 = not next_move_to_130_motor_19
+
+async def motor_20(msg):
+    global next_move_to_130_motor_20  # Reference the global variable
+
+    if msg.note == 20 and msg.velocity != 0:
+        if next_move_to_130_motor_20:
+            kit1.servo[4].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[4].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_20 = not next_move_to_130_motor_20
+
+async def motor_21(msg):
+    global next_move_to_130_motor_21  # Reference the global variable
+
+    if msg.note == 21 and msg.velocity != 0:
+        if next_move_to_130_motor_21:
+            kit1.servo[5].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[5].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_21 = not next_move_to_130_motor_21
+
+async def motor_22(msg):
+    global next_move_to_130_motor_22  # Reference the global variable
+
+    if msg.note == 22 and msg.velocity != 0:
+        if next_move_to_130_motor_22:
+            kit1.servo[6].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[6].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_22 = not next_move_to_130_motor_22
+
+async def motor_23(msg):
+    global next_move_to_130_motor_23  # Reference the global variable
+
+    if msg.note == 23 and msg.velocity != 0:
+        if next_move_to_130_motor_23:
+            kit1.servo[7].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[7].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_23 = not next_move_to_130_motor_23
+
+async def motor_24(msg):
+    global next_move_to_130_motor_24  # Reference the global variable
+
+    if msg.note == 24 and msg.velocity != 0:
+        if next_move_to_130_motor_24:
+            kit1.servo[8].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[8].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_24 = not next_move_to_130_motor_24
+
+
+async def motor_25(msg):
+    global next_move_to_130_motor_25  # Reference the global variable
+
+    if msg.note == 25 and msg.velocity != 0:
+        if next_move_to_130_motor_25:
+            kit1.servo[9].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[9].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_25 = not next_move_to_130_motor_25
+
+
+async def motor_26(msg):
+    global next_move_to_130_motor_26  # Reference the global variable
+
+    if msg.note == 26 and msg.velocity != 0:
+        if next_move_to_130_motor_26:
+            kit1.servo[10].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[10].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_26 = not next_move_to_130_motor_26
+
+
+async def motor_27(msg):
+    if msg.note == 27:
+        if msg.velocity == 0:
+            kit1.continuous_servo[11].throttle = 0.1  # value for stopping continuous servo
+        else:
+            outputVel_continuous = map_range(msg.velocity, 0, 127, 0.0, -0.5)
+            kit1.continuous_servo[11].throttle = outputVel_continuous
+
+async def motor_28(msg):
+    global next_move_to_130_motor_28  # Reference the global variable
+
+    if msg.note == 28 and msg.velocity != 0:
+        if next_move_to_130_motor_28:
+            kit1.servo[12].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[12].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_28 = not next_move_to_130_motor_28
+
+
+async def motor_29(msg):
+    global next_move_to_130_motor_29  # Reference the global variable
+
+    if msg.note == 29 and msg.velocity != 0:
+        if next_move_to_130_motor_29:
+            kit1.servo[13].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[13].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_29 = not next_move_to_130_motor_29
+
+
+async def motor_30(msg):
+    global next_move_to_130_motor_30  # Reference the global variable
+
+    if msg.note == 30 and msg.velocity != 0:
+        if next_move_to_130_motor_30:
+            kit1.servo[14].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[14].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_30 = not next_move_to_130_motor_30
+
+async def motor_31(msg):
+    global next_move_to_130_motor_31  # Reference the global variable
+
+    if msg.note == 31 and msg.velocity != 0:
+        if next_move_to_130_motor_31:
+            kit1.servo[15].angle = 130  # Move servo to 130 degrees
+        else:
+            kit1.servo[15].angle = 0    # Move servo back to 0 degrees
+
+        # Toggle the state for the next movement
+        next_move_to_130_motor_31 = not next_move_to_130_motor_31
+
+async def process_midi_message(msg):
+    # Map MIDI notes to their corresponding motor functions
+    note_to_motor_map = {
+        0: motor_0,
+        1: motor_1,
+        2: motor_2,
+        3: motor_3,
+        4: motor_4,
+        5: motor_5,
+        6: motor_6,
+        7: motor_7,
+        8: motor_8,
+        9: motor_9,
+        10: motor_10,
+        11: motor_11,
+        12: motor_12,
+        13: motor_13,
+        14: motor_14,
+        15: motor_15,
+        16: motor_16,
+        17: motor_17,
+        18: motor_18,
+        19: motor_19,
+        20: motor_20,
+        21: motor_21,
+        22: motor_22,
+        23: motor_23,
+        24: motor_24,
+        25: motor_25,
+        26: motor_26,
+        27: motor_27,
+        28: motor_28,
+        29: motor_29,
+        30: motor_30,
+        31: motor_31
+    }
+    if hasattr(msg, 'note') and msg.note in note_to_motor_map:
+        # Fetch the corresponding motor function based on the MIDI note
+        motor_function = note_to_motor_map[msg.note]
+        # Call the motor function with the message
+        await motor_function(msg)
+
+async def midi_listener_and_processor():
+    while True:
+        msg = midi.receive()
+        if msg is not None:
+            print(msg)
+            await process_midi_message(msg)
+
+# Entry point for the asyncio program
+async def run():
+    await midi_listener_and_processor()
+
+# Start the program
+asyncio.run(run())
