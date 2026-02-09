@@ -1,1 +1,2 @@
-# -Speech_Derived_Music_Code
+Speech-Derived Music: Computational and Electromechanical Methods in DIY Sound-Art
+Code appendix
