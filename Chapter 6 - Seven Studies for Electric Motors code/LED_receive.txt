@@ -1,0 +1,42 @@
+# circuitpython
+
+# --------------------
+# Simple bit of code for controlling the lights
+# --------------------
+
+import board
+import busio
+import digitalio
+import time
+import adafruit_tlc5947
+import supervisor
+import sys
+
+# Initialize TLC5947
+spi = busio.SPI(clock=board.SCK, MOSI=board.MOSI)
+latch = digitalio.DigitalInOut(board.D5)
+tlc5947 = adafruit_tlc5947.TLC5947(spi, latch, auto_write=True)
+
+# all LEDs to off
+for i in range(24):
+    tlc5947[i] = 0
+
+def process_command(cmd):
+    try:
+        led_num, value = cmd.strip().lower().split()
+        led_num = int(led_num)
+        value = int(value)
+        if 0 <= led_num < 24 and 0 <= value <= 4095:
+            tlc5947[led_num] = value
+            print(f"LED {led_num} set to {value}")
+            return True
+    except:
+        pass
+    return False
+
+# Main loop
+print("READY")  # Single ready message
+while True:
+    if supervisor.runtime.serial_bytes_available:
+        command = sys.stdin.readline()
+        process_command(command)
