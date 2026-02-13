@@ -23,9 +23,9 @@ import time
 import json
 import tempfile
 
-loaded_gesture_grids = np.load("/home/fin/Documents/filtered_grids_pyin_FULL.npy")
-depsavefilelocation = "/home/fin/Documents/depfolder/dependencylist.txt"
-depsavefolder = "/home/fin/Documents/depfolder"
+loaded_gesture_grids = np.load("filtered_grids_pyin_FULL.npy")
+depsavefilelocation = "dependencylist.txt"
+depsavefolder = "/depfolder"
 
 # direction grid for reading back
 directiongrid = [[0,1,2,3],
