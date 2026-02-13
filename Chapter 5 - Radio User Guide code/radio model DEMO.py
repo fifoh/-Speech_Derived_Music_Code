@@ -50,15 +50,12 @@ class TextGenerator:
         self.n_layers = n_layers
         self.temp = temp
 
-        # Initialize hidden and cell states
         self.hidden = np.zeros((n_layers, 1, hidden_size), dtype=np.float32)
         self.cell = np.zeros((n_layers, 1, hidden_size), dtype=np.float32)
 
-        # Initialize input sequence
         self.idx_input = [char_to_idx[char] for char in start_text]
         self.input_seq = np.array(self.idx_input, dtype=np.int64).reshape(-1, 1, 1)
         
-        # Prime the model with the start text
         for i in range(len(start_text)):
             inputs = {
                 'input': self.input_seq[i:i+1], 
@@ -82,7 +79,6 @@ class TextGenerator:
         self.hidden = outputs[1]
         self.cell = outputs[2]
         
-        # Apply the log-sum-exp trick to stabilize softmax
         max_logit = np.max(output_logits)
         stabilized_logits = output_logits - max_logit
         exp_logits = np.exp(stabilized_logits / self.temp)
