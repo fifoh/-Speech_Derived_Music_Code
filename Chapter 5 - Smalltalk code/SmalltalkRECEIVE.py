@@ -9,8 +9,8 @@ thisdevice = 'Device_2' # or Device_3
 audio_volume = 0.5
 
 # specify audio and MIDI folders
-audio_path = f"/home/fin/speech/SmalltalkFINAL/audio/{thisdevice}"
-midi_path = f"/home/fin/speech/SmalltalkFINAL/midi/{thisdevice}"
+audio_path = f"/Smalltalk/audio/{thisdevice}"
+midi_path = f"/Smalltalk/midi/{thisdevice}"
 
 # Get audio and MIDI files
 audio_files = [os.path.join(audio_path, f) for f in os.listdir(audio_path) if f.endswith(('.mp3', '.wav'))]

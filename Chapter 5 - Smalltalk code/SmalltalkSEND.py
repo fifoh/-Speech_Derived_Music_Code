@@ -4,8 +4,7 @@
 # In[ ]:
 
 
-thisdevice = 'Device_1' # don't change for send device
-
+thisdevice = 'Device_1'
 audio_volume = 0.5
 
 from pythonosc import udp_client
@@ -19,8 +18,8 @@ import time
 import mido
 
 # specify audio and MIDI folders
-audio_path = f"/home/fin/speech/SmalltalkFINAL/audio/Device_1"
-midi_path = f"/home/fin/speech/SmalltalkFINAL/midi/Device_1"
+audio_path = f"/Smalltalk/audio/Device_1"
+midi_path = f"/Smalltalk/midi/Device_1"
 
 # Get audio and MIDI files
 audio_files = [os.path.join(audio_path, f) for f in os.listdir(audio_path) if f.endswith(('.mp3', '.wav'))]
