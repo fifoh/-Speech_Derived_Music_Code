@@ -1,7 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# This code is for testing the radio text models. 
+# Models and files under Models / Chapter 5 - Radio User Guide models / Text models
+
 # In[1]:
+# define file paths
+onnx_model_path = "{path-to}/1.onnx"
+idx_to_char_path = "{path-to}/idx_to_char.pkl"
+char_to_idx_path = "{path-to}/char_to_idx.pkl"
 
 
 import onnxruntime as ort
@@ -93,8 +100,6 @@ def change_model(filepath):
     session = load_model(filepath)
     return session
 
-idx_to_char_path = "E:/RadioModels_6_FINAL_Dictionaries/idx_to_char.pkl"
-char_to_idx_path = "E:/RadioModels_6_FINAL_Dictionaries/char_to_idx.pkl"
 idx_to_char, char_to_idx = load_dictionaries(idx_to_char_path, char_to_idx_path)
 
 
@@ -105,10 +110,9 @@ idx_to_char, char_to_idx = load_dictionaries(idx_to_char_path, char_to_idx_path)
 
 
 # In[2]:
+# LOAD MODELS -----------------------------------------------------------
 
-
-# load a new model: numbered 1 to 14
-onnx_model_path = "E:/Radio_Models_Runtime/1.onnx"
+# redefine if using a different model, numered 1 to 14: onnx_model_path = "{path-to}/14.onnx"
 session = load_model(onnx_model_path)
 text_generator = TextGenerator(session, char_to_idx, idx_to_char, start_text=' ')
 
@@ -122,30 +126,7 @@ word = generateWord()
 
 # In[4]:
 
-
-change_model("E:/Radio_Models_Runtime/2.onnx")
-text_generator = TextGenerator(session, char_to_idx, idx_to_char, start_text=' ')
-
-
-# In[5]:
-
-
-# ---------------------------
-
-
-# In[15]:
-
-
-# load a new model: numbered 1 to 14
-onnx_model_path = "E:/Radio_Models_Runtime/1.onnx"
-session = load_model(onnx_model_path)
-text_generator = TextGenerator(session, char_to_idx, idx_to_char, start_text=' ')
-
-
-# In[16]:
-
-
-# Generating chunks of material 
+# Generating more text 
 
 words = []
 
