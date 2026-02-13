@@ -1,7 +1,9 @@
+# This code is for performing with the Radio User Guide devices (audio playback, midi motor control)
+
 import os
 os.environ['SDL_AUDIODRIVER'] = 'alsa'
 
-audio_folder_path = '/home/fin/Documents/device_3'
+audio_folder_path = '/device_3'
 this_device = 'device_3'
 
 # unchanged from here
