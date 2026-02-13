@@ -418,11 +418,11 @@ import pickle
 import joblib
 
 # Load the word vectors (reduced 7 dims)
-with open('/home/fin/Documents/pickled_7dim_vectors.pkl', 'rb') as file:
+with open('pickled_7dim_vectors.pkl', 'rb') as file:
     STRETCHED_VECTORS = pickle.load(file)
     
 # Load the dictionary that maps words to their index (row number)
-WORD_TO_INDEX = joblib.load('/home/fin/Documents/word_to_index.joblib')
+WORD_TO_INDEX = joblib.load('word_to_index.joblib')
 INDEX_TO_WORD = [word for word, index in sorted(WORD_TO_INDEX.items(), key=lambda item: item[1])]
 
 def get_stretched_params(word):
