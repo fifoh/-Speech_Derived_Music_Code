@@ -23,7 +23,7 @@ import random
 import time
 from itertools import permutations
 # -------------------------------------------------------------------------------------------------- 
-# https://github.com/NathanDuran/MRDA-Corpus/blob/master/README.md source for the conversation acts dataset
+# https://github.com/NathanDuran/MRDA-Corpus/blob/master/README.md source for the dialogue acts dataset
 def intersperse(lst, item):
     result = [item] * (len(lst) * 2 - 1)
     result[0::2] = lst
@@ -36,14 +36,14 @@ combi_perm = perm_4 + perm_3
 patternpallete = [list(i) for i in set(map(tuple, combi_perm))]
 # -------------------------------------------------------------------------------------------------- 
 # import needed data
-with open('C:\\Users\\Fin\\Desktop\\PhD_y2\\Ceramics_project\\tokenizer_BASIC_6voices.pkl', 'rb') as fp:
+with open('tokenizer_BASIC_6voices.pkl', 'rb') as fp:
     tokenizer = pickle.load(fp)
     
-with open('C:\\Users\\Fin\\Desktop\\PhD_y2\\Ceramics_project\\vocabulary_BASIC_6voices.pkl', 'rb') as fp:
+with open('vocabulary_BASIC_6voices.pkl', 'rb') as fp:
     vocabulary = pickle.load(fp)
 # --------------------------------------------------------------------------------------------------     
 # Load the TFLite model in TFLite Interpreter
-interpreter = tf.lite.Interpreter('C:\\Users\\Fin\\Desktop\\PhD_y2\\Ceramics_project\\LSTM_words_BASIC_6voices.tflite')
+interpreter = tf.lite.Interpreter('STM_words_BASIC_6voices.tflite')
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
@@ -670,8 +670,6 @@ try:
         time.sleep(0.2)
         # in a loop, then sleep for duration of the segment (IN SECONDS NOT MS)
         time.sleep(((total_duration/1000)+(ending_rhythm_value/1000)) - 0.17) # last val to compensate for computation time
-	# (to avoid rests where you don't want them)
-        # there is a problem in the timing, possible that computation is not consistent
 
 
     
