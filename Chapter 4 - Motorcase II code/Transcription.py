@@ -16,26 +16,32 @@ import pretty_midi
 import glob, os
 import pickle
 
-midi_out_folder = 'E:/Emotion_case_piece/MIDI_Mel_Transcriptions'
+midi_out_folder = '{folder_to_save_MIDI_transcriptions}'
 
-with open('E:/uniform_noisy_data_clipped.pkl', 'rb') as f:
+with open('{uniform_noisy_data_clipped.pkl}', 'rb') as f: # path to MSP-podcast data (added small amount of noise to spread distribution)
     data_array = pickle.load(f)
 
-with open('E:/filenames.pkl', 'rb') as f:
+with open('filenames.pkl', 'rb') as f: # path to corpus filenames
     filenames = pickle.load(f)
-audiofilepaths = ['C:/Users/Fin/Desktop/MSP_podcast_corpus/Audios/Audio/' + filename for filename in filenames]
+audiofilepaths = ['MSP_podcast_corpus/Audios/Audio/' + filename for filename in filenames] # path to corpus audio
+
+# Minimum duration threshold in seconds
+min_duration_threshold = 0.03
+
+# Repeat time threshold in seconds to join repeated notes
+repeat_time_threshold = 0.1
 
 
 # In[24]:
 
 
-data_array[0]
+data_array[0] # check
 
 
 # In[25]:
 
 
-filenames[0]
+filenames[0] # check
 
 
 # In[26]:
@@ -45,12 +51,6 @@ filenames[0]
 def db_to_velocity(db_value, threshold):
     velocity = int(np.clip((db_value - threshold) / (0 - threshold) * 64, 0, 127))
     return velocity
-
-# Minimum duration threshold in seconds
-min_duration_threshold = 0.03
-
-# Repeat time threshold in seconds to join repeated notes
-repeat_time_threshold = 0.1
 
 # Define a mapping dictionary for MIDI notes
 midi_note_mapping = {
@@ -173,7 +173,7 @@ for index, audiofile in enumerate(audiofilepaths):
         midi.instruments.append(instrument)
         
         # Define the MIDI file path with the same name as the audio file but with a .midi extension
-        midi_file_path = audiofile.replace('C:/Users/Fin/Desktop/MSP_podcast_corpus/Audios/Audio/', 'E:/Emotion_case_piece/New_MIDI_files/')
+        midi_file_path = audiofile.replace('MSP_podcast_corpus/Audios/Audio/', midi_out_folder) # save path 
         midi_file_path = midi_file_path.replace('.wav', '.midi')
         
         # Write the MIDI file
@@ -194,7 +194,7 @@ for index, filename, error in skipped_files:
 # In[27]:
 
 
-skipped_files
+skipped_files # to view errors (empty audio files etc.)
 
 # ------------------
 # TESTING playback from here
@@ -206,13 +206,13 @@ import mido
 from mido import MidiFile
 mido.get_output_names()
 
-port = mido.open_output('loopMIDI Port 1') # to send to max for testing
+port = mido.open_output('loopMIDI Port 1') # to send to Max-MSP for testing
 
 
 # In[35]:
 
 
-loaded_midi_file = MidiFile(r"E:\Emotion_case_piece\New_MIDI_files\MSP-PODCAST_2421_0897.midi")
+loaded_midi_file = MidiFile(r"{path to midi file}")
 
 
 for msg in loaded_midi_file.play():
