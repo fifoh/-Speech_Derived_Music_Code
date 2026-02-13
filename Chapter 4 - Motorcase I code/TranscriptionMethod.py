@@ -9,8 +9,8 @@
 # pre: install libraries
 
 # 1. define folder of motor sounds, and source audio file.
-# motor sound folder 'C:/Users/Fin/Desktop/pythonspeech/Motor_combinations_Sound'
-filename = "C:/Users/Fin/Desktop/pythonspeech/Transcriptions_TEXT/poetry_hour.wav" # # must be mono 16bit 16000 khz
+filename = "{source_speech_audio}" # must be mono 16bit 16000 khz
+Motor_audio_individual = "{folder_of_motor_audio}" # must be mono 16bit 16000 khz
 
 # 2. transcribe speech manually:
 input_transcript = 'are going to miss them I like to read about such things presented not with self pity or dispair or romanticism but with the realistic firmness and even humor that is in fact what I call the moral tone of miss pimms novels it is also the moral tone of larkins poems he once said that art should either help us to enjoy or to endure yet he himself found it difficult to do either why'
@@ -395,7 +395,7 @@ Sound_Rounded_RMS_List_scaled = np.around(Sound_RMS_List_scaled_0_to_4)
 # MOTOR SOUND ANALYSIS ---------------------------------------------------------------------------
 
 # create list of motor sounds in the given folder
-MOTORfiles = librosa.util.find_files('C:/Users/Fin/Desktop/pythonspeech/Motor_audio_individual')
+MOTORfiles = librosa.util.find_files(Motor_audio_individual)
 motor_audios = Tcl().call('lsort', '-dict', MOTORfiles)
 for i, v in enumerate(motor_audios):
     print(i, v)
