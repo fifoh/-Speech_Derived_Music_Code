@@ -4,15 +4,13 @@
 # In[12]:
 
 
-# uses DTW to extract similar pitch gestures (from an audio file) using a drawing
+# longplot version of MatchingGestures, for longer audio files where images can't be rendered in notebook
 # run this cell, draw a line, press 'ESC'
 
-# to do: try with a longer audio file, and use for smalltalk composition
-
 # Paths
-input_audio_path = r"E:\Smalltalk_gesture_extraction\latent_diffusion_audio\rave-latent_diffusion_seed664_out_smalltalk2_e5ef914ed9.wav"
+input_audio_path = r"{input_audio_path}" # set audio path
 
-mode = 'pitch' # mode = 'pitch' OR amplitude' // amplitude not very reliable
+mode = 'pitch' # mode = 'pitch' OR amplitude'
 
 # adjustable parameters for DTW
 max_rangefactor = 5 # how much the query can be stretched: default 5
@@ -20,8 +18,7 @@ overlap = 0 # whether found subsections can overlap: default 0
 minlength = 30 # minimum length for match (frames): default 30
 maxlength = 80 # maximum length for match (frames): default 150
 
-top_n = 20  # Number of top matches you want to see: default 10
-
+top_n = 20  # Number of top matches you want to see
 
 import parselmouth
 import numpy as np
@@ -313,7 +310,7 @@ if not audio_objects:
 
 
 # save all matches to folder
-saving_audio_directory = r"E:\Smalltalk_gesture_extraction\Saved_fragments" # set folder base path
+saving_audio_directory = r"{save_folder_path}" # set folder base path
 
 # Generate a folder name using the current date and time
 folder_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") # creates new folder date/time
@@ -321,7 +318,7 @@ save_folder_path = os.path.join(saving_audio_directory, folder_name)
 os.makedirs(save_folder_path, exist_ok=True)
 print(f"Created folder: {save_folder_path}")
 
-for i, match in enumerate(matches_list):  # Use enumerate to get both index and match
+for i, match in enumerate(matches_list):
     segment = match.segment  # Access the matched segment in the series
     start = segment[0]       # Start index of the match
     end = segment[1]         # End index of the match

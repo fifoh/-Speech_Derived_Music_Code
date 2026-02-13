@@ -4,11 +4,11 @@
 # In[16]:
 
 
-# uses DTW to extract similar pitch gestures (from an audio file) using a drawing
+# uses DTW to extract similar pitch gestures (from an audio file) using a drawing, save audio of best matches
 # run this cell, draw a line, press 'ESC'
 
 # Paths
-input_audio_path = r"E:\Smalltalk_gesture_extraction\latent_diffusion_audio\rave-latent_diffusion_seed664_out_smalltalk2_e5ef914ed9.wav"
+input_audio_path = r"{path to audio}" # define audio path for file to search
 
 mode = 'pitch' # mode = 'pitch' OR amplitude'
 
@@ -18,7 +18,7 @@ overlap = 0 # whether found subsections can overlap: default 0
 minlength = 30 # minimum length for match (frames): default 30
 maxlength = 80 # maximum length for match (frames): default 150
 
-top_n = 20  # Number of top matches you want to see: default 10
+top_n = 20  # Number of top matches you want to see
 
 
 import parselmouth
@@ -304,7 +304,7 @@ if not audio_objects:
 
 
 # save all matches to folder
-saving_audio_directory = r"E:\Smalltalk_gesture_extraction\Saved_fragments" # set folder base path
+saving_audio_directory = r"{save_folder}" # set folder base path
 
 # Generate a folder name using the current date and time
 folder_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") # creates new folder date/time
