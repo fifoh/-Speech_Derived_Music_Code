@@ -1,3 +1,7 @@
+# ---------------------
+# This script is for overlaying subtitles on the live video stream.
+# ---------------------
+
 from picamera2 import Picamera2
 import cv2, numpy as np, os
 
