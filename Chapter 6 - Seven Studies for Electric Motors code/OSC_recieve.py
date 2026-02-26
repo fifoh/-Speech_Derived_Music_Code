@@ -5,7 +5,7 @@
 # -----------------------------
 # This code gets serial data from the puredata patch, and outputs to the motors and LED's
 
-# puredata >> this script >> motors and lights
+# puredata >> THIS script >> motors and lights
 
 # ----------------------------
 
