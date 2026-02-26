@@ -541,12 +541,10 @@ def playback_events(events):
 import string
 
 def playback_word(words):
-    """
-    Play one or more words in sequence (e.g. 'LESSON ONE:').
-    Writes progressively to /tmp/current_word.txt:
-    Uses punctuation-free words for playback, but keeps punctuation
-    in the text file writes (which trigger visuals).
-    """
+    # Play one or more words in sequence
+    # Write to /tmp/current_word.txt:
+    # Use punctuation-free words for playback, but keep punctuation in the text file writes (which trigger visuals).
+    
     # Clean version for playback (no punctuation)
     cleaned = words.translate(str.maketrans("", "", string.punctuation))
     cleaned_word_list = cleaned.split()
