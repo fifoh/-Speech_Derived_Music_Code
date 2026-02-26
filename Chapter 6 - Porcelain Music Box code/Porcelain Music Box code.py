@@ -2,9 +2,9 @@
 # coding: utf-8
 
 # -----------------------------------------
-THIS is the entire code for porcelain music box, in an installation setting
+# THIS is the entire code for porcelain music box, in an installation setting
 
-user input >> playback
+# user input >> playback
 
 # -----------------------------------------
 
