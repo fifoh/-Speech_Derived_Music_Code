@@ -1,3 +1,7 @@
+# ---------------------
+# This script plays the piece for 'word games': THIS script >> camera7.py for camera overlay
+# ---------------------
+
 from serial.tools import list_ports
 import serial, time
 
