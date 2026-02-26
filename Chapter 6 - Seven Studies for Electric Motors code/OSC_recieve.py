@@ -5,7 +5,7 @@
 # -----------------------------
 # This code gets serial data from the puredata patch, and outputs to the motors and LED's
 
-# puredata >> THIS script >> motors and lights
+# generate_sentences.py >> puredata >> THIS script >> motors and lights
 
 # ----------------------------
 
