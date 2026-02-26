@@ -511,7 +511,7 @@ def create_question(initial_duration, initial_amplitude):
 
     return withinbetween_rests_rhythm, ending_rhythm_value2, total_duration, withinbetween_rests_amplitude, ending_amplitude_value, withinbetween_rests_note_pattern    
 # -------------------------------------------------------------------------------------------------- 
-# the response to a question is always a note loop taken from the question, but still vary the amplitude and rhythm ??
+# the response to a question is always a note loop taken from the question
 def create_statement_response_to_question(initial_duration, initial_amplitude, root_note_pattern):
     # essentially like a statement, but looping a note pattern from the question.. and always getting faster
     # (as the question always ends slow)
@@ -635,7 +635,7 @@ try:
 
 
 
-        # following code for testing, send OSC message via wekinator to max msp... but important lists for motors are (rhythm), (amplitude) and (notepattern)
+        # following code for testing, send OSC message to max msp... but important lists for motors are (rhythm), (amplitude) and (notepattern)
         # print(voice_number, rhythm)
 
         # send OSC message
@@ -643,7 +643,7 @@ try:
             mymsg = notepattern[x]
 
             client = udp_client.UDPClient('127.0.0.1', 6500) # send to max msp
-            msg = osc_message_builder.OscMessageBuilder(address = '/wek/inputs')
+            msg = osc_message_builder.OscMessageBuilder(address = '/inputs')
             msg.add_arg(mymsg)
             msg = msg.build()
             client.send(msg)
@@ -652,7 +652,7 @@ try:
             mymsg = rhythm[x]
 
             client = udp_client.UDPClient('127.0.0.1', 6400) # send to max msp
-            msg = osc_message_builder.OscMessageBuilder(address = '/wek/inputs')
+            msg = osc_message_builder.OscMessageBuilder(address = '/inputs')
             msg.add_arg(mymsg)
             msg = msg.build()
             client.send(msg)
@@ -662,7 +662,7 @@ try:
             mymsg = amplitude[x]
 
             client = udp_client.UDPClient('127.0.0.1', 6300) # send to max msp
-            msg = osc_message_builder.OscMessageBuilder(address = '/wek/inputs')
+            msg = osc_message_builder.OscMessageBuilder(address = '/inputs')
             msg.add_arg(mymsg)
             msg = msg.build()
             client.send(msg)
