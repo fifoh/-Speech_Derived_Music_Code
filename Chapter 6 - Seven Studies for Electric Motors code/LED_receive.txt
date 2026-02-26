@@ -35,8 +35,9 @@ def process_command(cmd):
     return False
 
 # Main loop
-print("READY")  # Single ready message
+print("READY")
 while True:
     if supervisor.runtime.serial_bytes_available:
         command = sys.stdin.readline()
+
         process_command(command)
